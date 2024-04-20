@@ -27,47 +27,79 @@
 Todo List
 </h5>
 <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Write Your Todo List.</p>
-<div id="app">vue js</div>
-        @vite('resources/js/app.js')
+
 <ul class="my-4 space-y-3">
 <li>
     
     
     @foreach ($items as $item)
        <!-- check if is_complete -->
-       <xform  method="post" action="{{route('completeItem')}}">
+       <form  method="post" action="{{route('completeItem')}}">
         {{ csrf_field()}}
-            <button type="submit" class="flex items-center p-3 my-2 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                <span class="hidden group-hover:block"><svg height="28px"  viewBox="0 0 48 48" width="28px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g id="Artboard-Copy" transform="translate(-407.000000, -489.000000)"><path d="M424.125092,520.374775 L419.548425,515.869775 C418.815925,515.148942 418.815925,513.978108 419.548425,513.258942 L421.537592,511.301442 C422.266758,510.581442 423.454258,510.581442 424.183425,511.301442 L427.562592,514.626442 L438.814258,503.542275 C439.546758,502.821442 440.733425,502.821442 441.464258,503.542275 L443.450925,505.498942 C444.181758,506.219775 444.181758,507.386442 443.450925,508.108108 L428.879258,522.459775 C428.148425,523.180608 426.961758,523.180608 426.229258,522.459775 L424.244258,520.503942 L424.125092,520.374775 L424.125092,520.374775 Z" fill="#2563eb" id="check2"/><g id="slices" transform="translate(47.000000, 9.000000)"/></g></g></svg>
+            <button type="submit" class="flex items-center p-3 my-2 text-base font-bold
+             text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow
+              dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+
+                <span class="hidden group-hover:block">
+                    <svg height="28px"  viewBox="0 0 48 48"
+                     width="28px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                     <title/><desc/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1">
+                    <g id="Artboard-Copy" transform="translate(-407.000000, -489.000000)">
+                    <path d="M424.125092,520.374775 L419.548425,515.869775 C418.815925,515.148942 
+                    418.815925,513.978108 419.548425,513.258942 L421.537592,511.301442 C422.266758,
+                    510.581442 423.454258,510.581442 424.183425,511.301442 L427.562592,514.626442 
+                    L438.814258,503.542275 C439.546758,502.821442 440.733425,502.821442 441.464258,
+                    503.542275 L443.450925,505.498942 C444.181758,506.219775 444.181758,507.386442 
+                    443.450925,508.108108 L428.879258,522.459775 C428.148425,523.180608 426.961758,
+                    523.180608 426.229258,522.459775 L424.244258,520.503942 L424.125092,520.374775 
+                    L424.125092,520.374775 Z" fill="#2563eb" id="check2"/><g id="slices" 
+                    transform="translate(47.000000, 9.000000)"/></g></g>
+                    </svg>   
                 </span>
             <span class="flex-1 ms-1 font-normal">{{$item->name}}</span>
             <input type="hidden" name="id" value="{{$item->id}}"/>
+
             <form  method="post" name="editForm{{ $loop->index}}" action="{{route('editItem')}}">
                 {{ csrf_field()}}
                 <input type="hidden" name="id" value="{{$item->id}}"/>
-                <span onclick="editForm{{ $loop->index}}.submit()" class="inline-flex items-center justify-center px-2 py-1 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white" >Edit</span>
+                <span onclick="editForm{{ $loop->index}}.submit()" class="inline-flex items-center 
+                    justify-center px-2 py-1 ms-3 text-xs font-medium text-gray-500 bg-gray-200 
+                    rounded dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white" >Edit
+                </span>
             </form>
+            
             </button>   
-        </xform>
+        </form>
     @endforeach
-    
-
 
 </li>
 </ul>
-<div>
-  <form method="post" action="{{ route('saveItem')}}">
-    {{ csrf_field()}}
-    <div class="flex">
-        <div class="relative w-full">
-            <input type="text" name="listItem"  class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Wash Hands" required />
-            <button type="submit" class="absolute top-0 end-0 p-2.5 h-full text-sm font-medium text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Todo</button>
+
+    <div>
+    <form method="post" action="{{ route('saveItem')}}">
+        {{ csrf_field()}}
+        <div class="flex">
+            <div class="relative w-full">
+
+                <input type="text" name="listItem"  class="block p-2.5 w-full z-20 text-sm text-gray-900 
+                bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 
+                focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 
+                dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Wash Hands" required />
+
+                <button type="submit" class="absolute top-0 end-0 p-2.5 h-full text-sm font-medium text-white
+                 bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 
+                 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 
+                 dark:focus:ring-blue-800">Add Todo</button>
+
+            </div>
         </div>
+    `</form>
     </div>
-`</form>
+
 </div>
-</div>
-</div>      
+</div>   
+
+
     </body>
     <script>
 
